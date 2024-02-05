@@ -20,7 +20,7 @@ interval:
                       id: led_strip
                       brightness: !lambda 'return id(led_brightness).state / 100.0;'
                       range_from: 0
-                      range_to: 50
+                      range_to: 5
                       red: 0%
                       green: 100%
                       blue: 0%
