@@ -18,7 +18,7 @@ interval:
                   #     blue: 0%
                   - light.addressable_set:
                       id: led_strip
-                      brightness: !lambda 'return id(led_brightness).state / 100.0;'
+                      color_brightness: !lambda 'return id(led_brightness).state / 100.0;'
                       range_from: 0
                       range_to: 5
                       red: 0%
