@@ -29,7 +29,7 @@ interval:
                       range_from: '!lambda 'return max( floor( ((id(co2).state-100)/60) - 21) * -1, 0);'
                       range_to: 10
                       red: 40%
-                      green: 60%
+                      green: 100%
                       blue: 0%
                       
             - if:
