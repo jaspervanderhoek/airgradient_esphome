@@ -8,7 +8,7 @@ interval:
           then:
             - if:
                 condition:
-                  lambda: 'return id(co2).state < 1240;'
+                  lambda: 'return id(co2).state < 1340;'
                 then:
                   - light.addressable_set:
                       id: led_strip
@@ -21,12 +21,12 @@ interval:
                       
             - if:
                 condition:
-                  lambda: 'return id(co2).state >= 700 && id(co2).state < 2240;'
+                  lambda: 'return id(co2).state >= 800 && id(co2).state < 2240;'
                 then:
                   - light.addressable_set:
                       id: led_strip
                       color_brightness: !lambda 'return id(led_brightness).state / 100.0;'
-                      range_from: '!lambda 'return max( floor( ((id(co2).state-100)/60) - 20) * -1, 0);'
+                      range_from: '!lambda 'return max( floor( ((id(co2).state-100)/60) - 21) * -1, 0);'
                       range_to: 10
                       red: 60%
                       green: 60%
