@@ -14,33 +14,33 @@ interval:
                       id: led_strip
                       color_brightness: !lambda 'return id(led_brightness).state / 100.0;'
                       range_from: 0
-                      range_to: !lamba 'return ceil( ((id(co2).state-100)/60) - 19);'
+                      range_to: !lamba 'return min(11, ceil( ((id(co2).state-100)/60) - 19) );'
                       red: 0%
                       green: 100%
                       blue: 0%
                       
             - if:
                 condition:
-                  lambda: 'return id(co2).state >= 800 && id(co2).state < 2240;'
+                  lambda: 'return id(co2).state >= 700 && id(co2).state < 2240;'
                 then:
                   - light.addressable_set:
                       id: led_strip
                       color_brightness: !lambda 'return id(led_brightness).state / 100.0;'
-                      range_from: '!lambda 'return max( floor( ((id(co2).state-100)/60) - 21) * -1, 0);'
-                      range_to: 10
+                      range_from: !lambda 'return max( floor( ((id(co2).state-100)/60) - 21) * -1, 0);'
+                      range_to: !lamba 'return max(ceil( ((id(co2).state-100)/60) - 36)), 0);'
                       red: 100%
                       green: 100%
                       blue: 0%
                       
             - if:
                 condition:
-                  lambda: 'return id(co2).state >= 1700;'
+                  lambda: 'return id(co2).state >= 1640;'
                 then:
                   - light.addressable_set:
                       id: led_strip
                       color_brightness: !lambda 'return id(led_brightness).state / 100.0;'
-                      range_from: '!lambda 'return max( floor( ((id(co2).state-100)/60) - 36) * -1, 0);'
-                      range_to: 10
+                      range_from: !lambda 'return max( floor( ((id(co2).state-100)/60) - 36) * -1, 0);'
+                      range_to: 11
                       red: 100%
                       green: 00%
                       blue: 0%
