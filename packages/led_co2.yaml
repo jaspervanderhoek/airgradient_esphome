@@ -19,7 +19,7 @@ interval:
                       id: led_strip
                       color_brightness: !lambda 'return id(led_brightness).state / 100.0;'
                       range_from: 0
-                      range_to: !lambda 'return min(11, ceil( ((id(co2).state-100)/60) - 19) );'
+                      range_to: !lambda 'return min(11.0, ceil( ((id(co2).state-100)/60) - 19) );'
                       red: 0%
                       green: 100%
                       blue: 0%
@@ -31,8 +31,8 @@ interval:
                   - light.addressable_set:
                       id: led_strip
                       color_brightness: !lambda 'return id(led_brightness).state / 100.0;'
-                      range_from: !lambda 'return max( floor( ((id(co2).state-100)/60) - 21) * -1, 0);'
-                      range_to: !lambda 'return max(ceil( ((id(co2).state-100)/60) - 36), 0);'
+                      range_from: !lambda 'return max( floor( ((id(co2).state-100)/60) - 21) * -1, 0.0);'
+                      range_to: !lambda 'return max(ceil( ((id(co2).state-100)/60) - 36), 0.0);'
                       red: 100%
                       green: 100%
                       blue: 0%
@@ -44,7 +44,7 @@ interval:
                   - light.addressable_set:
                       id: led_strip
                       color_brightness: !lambda 'return id(led_brightness).state / 100.0;'
-                      range_from: !lambda 'return max( floor( ((id(co2).state-100)/60) - 36) * -1, 0);'
+                      range_from: !lambda 'return max( floor( ((id(co2).state-100)/60) - 36) * -1, 0.0);'
                       range_to: 11
                       red: 100%
                       green: 00%
@@ -60,7 +60,7 @@ interval:
                       id: led_strip
                       color_brightness: !lambda 'return id(led_brightness).state / 100.0;'
                       range_from: 0
-                      range_to: !lambda 'return min(11, ceil( ((id(led_co2_test).state-100)/60) - 19) );'
+                      range_to: !lambda 'return min(11.0, ceil( ((id(led_co2_test).state-100)/60) - 19) );'
                       red: 0%
                       green: 100%
                       blue: 0%
@@ -72,8 +72,8 @@ interval:
                   - light.addressable_set:
                       id: led_strip
                       color_brightness: !lambda 'return id(led_brightness).state / 100.0;'
-                      range_from: !lambda 'return max( floor( ((id(led_co2_test).state-100)/60) - 21) * -1, 0);'
-                      range_to: !lambda 'return max(ceil( ((id(led_co2_test).state-100)/60) - 36), 0);'
+                      range_from: !lambda 'return max( floor( ((id(led_co2_test).state-100)/60) - 21) * -1, 0.0);'
+                      range_to: !lambda 'return max(ceil( ((id(led_co2_test).state-100)/60) - 36), 0.0);'
                       red: 100%
                       green: 100%
                       blue: 0%
@@ -85,7 +85,7 @@ interval:
                   - light.addressable_set:
                       id: led_strip
                       color_brightness: !lambda 'return id(led_brightness).state / 100.0;'
-                      range_from: !lambda 'return max( floor( ((id(led_co2_test).state-100)/60) - 36) * -1, 0);'
+                      range_from: !lambda 'return max( floor( ((id(led_co2_test).state-100)/60) - 36) * -1, 0.0);'
                       range_to: 11
                       red: 100%
                       green: 00%
