@@ -4,7 +4,9 @@ interval:
     then:
       - if:
           condition:
-            light.is_on: led_strip
+            and: 
+              - light.is_on: led_strip
+              - lambda: 'return id(led_co2_test).state > 0;'
           then:
             - if:
                 condition:
@@ -45,4 +47,43 @@ interval:
                       green: 00%
                       blue: 0%
 
-
+# Identical logic but testing CO2 quantity using the Co2 test slider
+          else:
+            - if:
+                condition:
+                  lambda: 'return id(led_co2_test).state < 1340;'
+                then:
+                  - light.addressable_set:
+                      id: led_strip
+                      color_brightness: !lambda 'return id(led_brightness).state / 100.0;'
+                      range_from: 0
+                      range_to: !lamba 'return min(11, ceil( ((id(led_co2_test).state-100)/60) - 19) );'
+                      red: 0%
+                      green: 100%
+                      blue: 0%
+                      
+            - if:
+                condition:
+                  lambda: 'return id(led_co2_test).state >= 700 && id(led_co2_test).state < 2240;'
+                then:
+                  - light.addressable_set:
+                      id: led_strip
+                      color_brightness: !lambda 'return id(led_brightness).state / 100.0;'
+                      range_from: !lambda 'return max( floor( ((id(led_co2_test).state-100)/60) - 21) * -1, 0);'
+                      range_to: !lamba 'return max(ceil( ((id(led_co2_test).state-100)/60) - 36)), 0);'
+                      red: 100%
+                      green: 100%
+                      blue: 0%
+                      
+            - if:
+                condition:
+                  lambda: 'return id(led_co2_test).state >= 1640;'
+                then:
+                  - light.addressable_set:
+                      id: led_strip
+                      color_brightness: !lambda 'return id(led_brightness).state / 100.0;'
+                      range_from: !lambda 'return max( floor( ((id(led_co2_test).state-100)/60) - 36) * -1, 0);'
+                      range_to: 11
+                      red: 100%
+                      green: 00%
+                      blue: 0%
