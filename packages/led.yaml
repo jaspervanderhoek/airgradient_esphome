@@ -23,8 +23,6 @@ number:
     optimistic: true
     restore_value: true
     mode: slider
-
-number:
   - platform: template
     # https://esphome.io/components/number/template.html
     name: "LED Test CO2"
