@@ -4,7 +4,7 @@ interval:
     then:
       - logger.log:
           format: "Updating CO2 LED, CO2 Test: %.1f and CO2: %.1f"
-          args: [ 'id(led_co2_test).stat', 'id(co2).state' ]
+          args: [ 'id(led_co2_test).state', 'id(co2).state' ]
       - if:
           condition:
             and: 
