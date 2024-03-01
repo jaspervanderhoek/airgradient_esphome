@@ -2,6 +2,9 @@ interval:
   - interval: 30s #1min
     # Set full LED strip to color based on CO2 values
     then:
+      - logger.log:
+          format: "Updating CO2 LED, CO2 Test: %.1f and CO2: %.1f"
+          args: [ 'id(led_co2_test).stat', 'id(co2).state' ]
       - if:
           condition:
             and: 
